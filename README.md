@@ -4,4 +4,4 @@ Parse the [official documentation page](https://core.telegram.org/bots/api) into
 
 ## Documents
 
-- [Methods&Types JSON document](https://github.com/telegex/api_doc.json/blob/main/bot_api_doc.json)
+- [JSON document](https://github.com/telegex/api_doc.json/blob/main/bot_api_doc.json) (Include methods, types, comments, more details...)
