@@ -1499,7 +1499,7 @@
         {
           "name": "until_date",
           "type": "Integer",
-          "description": "Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever. Applied for supergroups and channels only.",
+          "description": "Date when the user will be unbanned; Unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever. Applied for supergroups and channels only.",
           "required": false
         },
         {
@@ -1567,7 +1567,7 @@
         {
           "name": "until_date",
           "type": "Integer",
-          "description": "Date when restrictions will be lifted for the user, unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever",
+          "description": "Date when restrictions will be lifted for the user; Unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever",
           "required": false
         }
       ],
@@ -1598,25 +1598,43 @@
         {
           "name": "can_manage_chat",
           "type": "Boolean",
-          "description": "Pass True if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege",
+          "description": "Pass True if the administrator can access the chat event log, chat statistics, boost list in channels, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege",
           "required": false
         },
         {
           "name": "can_post_messages",
           "type": "Boolean",
-          "description": "Pass True if the administrator can create channel posts, channels only",
+          "description": "Pass True if the administrator can post messages in the channel; channels only",
           "required": false
         },
         {
           "name": "can_edit_messages",
           "type": "Boolean",
-          "description": "Pass True if the administrator can edit messages of other users and can pin messages, channels only",
+          "description": "Pass True if the administrator can edit messages of other users and can pin messages; channels only",
           "required": false
         },
         {
           "name": "can_delete_messages",
           "type": "Boolean",
           "description": "Pass True if the administrator can delete messages of other users",
+          "required": false
+        },
+        {
+          "name": "can_post_stories",
+          "type": "Boolean",
+          "description": "Pass True if the administrator can post stories in the channel; channels only",
+          "required": false
+        },
+        {
+          "name": "can_edit_stories",
+          "type": "Boolean",
+          "description": "Pass True if the administrator can edit stories posted by other users; channels only",
+          "required": false
+        },
+        {
+          "name": "can_delete_stories",
+          "type": "Boolean",
+          "description": "Pass True if the administrator can delete stories posted by other users; channels only",
           "required": false
         },
         {
@@ -4150,7 +4168,7 @@
         {
           "name": "emoji_status_expiration_date",
           "type": "Integer",
-          "description": "Optional. Expiration date of the emoji status of the other party in a private chat, if any. Returned only in getChat.",
+          "description": "Optional. Expiration date of the emoji status of the other party in a private chat in Unix time, if any. Returned only in getChat.",
           "optional": true
         },
         {
@@ -4612,7 +4630,7 @@
         {
           "name": "write_access_allowed",
           "type": "WriteAccessAllowed",
-          "description": "Optional. Service message: the user allowed the bot added to the attachment menu to write messages",
+          "description": "Optional. Service message: the user allowed the bot to write messages after adding it to the attachment or side menu, launching a Web App from a link, or accepting an explicit request from a Web App sent by the method requestWriteAccess",
           "optional": true
         },
         {
@@ -5532,12 +5550,24 @@
     },
     {
       "name": "WriteAccessAllowed",
-      "description": "This object represents a service message about a user allowing a bot to write messages after adding the bot to the attachment menu or launching a Web App from a link.",
+      "description": "This object represents a service message about a user allowing a bot to write messages after adding it to the attachment menu, launching a Web App from a link, or accepting an explicit request from a Web App sent by the method requestWriteAccess.",
       "fields": [
+        {
+          "name": "from_request",
+          "type": "Boolean",
+          "description": "Optional. True, if the access was granted after the user accepted an explicit request from a Web App sent by the method requestWriteAccess",
+          "optional": true
+        },
         {
           "name": "web_app_name",
           "type": "String",
-          "description": "Optional. Name of the Web App which was launched from a link",
+          "description": "Optional. Name of the Web App, if the access was granted when the Web App was launched from a link",
+          "optional": true
+        },
+        {
+          "name": "from_attachment_menu",
+          "type": "Boolean",
+          "description": "Optional. True, if the access was granted when the bot was added to the attachment or side menu",
           "optional": true
         }
       ]
@@ -6160,7 +6190,7 @@
         {
           "name": "can_manage_chat",
           "type": "Boolean",
-          "description": "True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege",
+          "description": "True, if the administrator can access the chat event log, chat statistics, boost list in channels, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege",
           "optional": false
         },
         {
@@ -6202,7 +6232,7 @@
         {
           "name": "can_post_messages",
           "type": "Boolean",
-          "description": "Optional. True, if the administrator can post in the channel; channels only",
+          "description": "Optional. True, if the administrator can post messages in the channel; channels only",
           "optional": true
         },
         {
@@ -6215,6 +6245,24 @@
           "name": "can_pin_messages",
           "type": "Boolean",
           "description": "Optional. True, if the user is allowed to pin messages; groups and supergroups only",
+          "optional": true
+        },
+        {
+          "name": "can_post_stories",
+          "type": "Boolean",
+          "description": "Optional. True, if the administrator can post stories in the channel; channels only",
+          "optional": true
+        },
+        {
+          "name": "can_edit_stories",
+          "type": "Boolean",
+          "description": "Optional. True, if the administrator can edit stories posted by other users; channels only",
+          "optional": true
+        },
+        {
+          "name": "can_delete_stories",
+          "type": "Boolean",
+          "description": "Optional. True, if the administrator can delete stories posted by other users; channels only",
           "optional": true
         },
         {
@@ -6290,7 +6338,7 @@
         {
           "name": "can_manage_chat",
           "type": "Boolean",
-          "description": "True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege",
+          "description": "True, if the administrator can access the chat event log, chat statistics, boost list in channels, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege",
           "optional": false
         },
         {
@@ -6332,7 +6380,7 @@
         {
           "name": "can_post_messages",
           "type": "Boolean",
-          "description": "Optional. True, if the administrator can post in the channel; channels only",
+          "description": "Optional. True, if the administrator can post messages in the channel; channels only",
           "optional": true
         },
         {
@@ -6345,6 +6393,24 @@
           "name": "can_pin_messages",
           "type": "Boolean",
           "description": "Optional. True, if the user is allowed to pin messages; groups and supergroups only",
+          "optional": true
+        },
+        {
+          "name": "can_post_stories",
+          "type": "Boolean",
+          "description": "Optional. True, if the administrator can post stories in the channel; channels only",
+          "optional": true
+        },
+        {
+          "name": "can_edit_stories",
+          "type": "Boolean",
+          "description": "Optional. True, if the administrator can edit stories posted by other users; channels only",
+          "optional": true
+        },
+        {
+          "name": "can_delete_stories",
+          "type": "Boolean",
+          "description": "Optional. True, if the administrator can delete stories posted by other users; channels only",
           "optional": true
         },
         {
@@ -6496,7 +6562,7 @@
         {
           "name": "until_date",
           "type": "Integer",
-          "description": "Date when restrictions will be lifted for this user; unix time. If 0, then the user is restricted forever",
+          "description": "Date when restrictions will be lifted for this user; Unix time. If 0, then the user is restricted forever",
           "optional": false
         }
       ],
@@ -6546,7 +6612,7 @@
         {
           "name": "until_date",
           "type": "Integer",
-          "description": "Date when restrictions will be lifted for this user; unix time. If 0, then the user is banned forever",
+          "description": "Date when restrictions will be lifted for this user; Unix time. If 0, then the user is banned forever",
           "optional": false
         }
       ],
